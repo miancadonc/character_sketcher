@@ -16,9 +16,23 @@ body {
     font-family: 'Courier New', Courier, monospace;
 }
 
+div {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
 div#environment-container {
 
     height: 1000px;
     background-color: cornsilk;
     width: 20%;
+}
+
+div#character-container {
+    position: fixed;
+    height: 1000px;
+    width: 80%;
+    top: 50px;
+    right: 0px;
 }
