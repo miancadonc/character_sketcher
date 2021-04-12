@@ -10,7 +10,6 @@ header h1 {
 }
 
 body {
-    background-color: darkgoldenrod;
     margin: 0;
     padding: 0;
     font-family: 'Courier New', Courier, monospace;
@@ -30,9 +29,14 @@ div#environment-container {
 }
 
 div#character-container {
+    background-color: darkgoldenrod;
     position: fixed;
     height: 1000px;
     width: 80%;
     top: 50px;
     right: 0px;
 }
+
+/* div.card {
+    
+} */

@@ -33,6 +33,7 @@ function createCharacterObjects(json){
 function renderCharacter(char){
     let div = document.createElement("div")
     div.id = char.id
+    div.classList.add("card")
     let name = document.createElement("h3")
     name.textContent = char.name
     div.appendChild(name)
