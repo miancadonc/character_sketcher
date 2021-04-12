@@ -2,6 +2,7 @@ const BASE_URL = "http://localhost:3000"
 const CHARACTERS_URL = `${BASE_URL}/characters`
 
 const characterArray = []
+const charContainer = document.getElementById("character-container")
 
 class Character {
     constructor (id, name, age, gender, description, goals, backstory) {
@@ -29,6 +30,13 @@ function createCharacterObjects(json){
     characterArray.forEach(e => renderCharacter(e))
 }
 
-
+function renderCharacter(char){
+    let div = document.createElement("div")
+    div.id = char.id
+    let name = document.createElement("h3")
+    name.textContent = char.name
+    div.appendChild(name)
+    charContainer.appendChild(div)
+}
 
 document.addEventListener("DOMContentLoaded", fetchCharacters)
