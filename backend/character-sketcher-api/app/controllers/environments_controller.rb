@@ -1,7 +1,7 @@
 class EnvironmentsController < ApplicationController
     def index
         environments = Environment.all
-        render json: Environmentserializer.new(environments).to_serialized_json
+        render json: EnvironmentSerializer.new(environments).to_serialized_json
     end
 
     def show
