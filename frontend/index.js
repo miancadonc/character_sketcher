@@ -5,6 +5,9 @@ const ENVIRONMENTS_URL = `${BASE_URL}/environments`
 const characterArray = []
 const charContainer = document.getElementById("character-container")
 
+const environmentArray = []
+const envContainer = document.getElementById("environment-container")
+
 class Character {
     constructor (id, name, age, gender, description, goals, backstory) {
         this.id = id
@@ -77,4 +80,12 @@ function fetchEnvironments(){
     .then(json => createEnvironmentObjects(json))
 }
 
+function createEnvironmentObjects(json){
+    json.forEach(function(e){
+        let env = new Environment(e.id, e.name, e.medium, e.characters)
+        environmentArray.push(env)
+    })
+}
+
 document.addEventListener("DOMContentLoaded", fetchCharacters)
+document.addEventListener("DOMContentLoaded", fetchEnvironments)
