@@ -34,9 +34,16 @@ function renderCharacter(char){
     let div = document.createElement("div")
     div.id = char.id
     div.classList.add("card")
-    let name = document.createElement("h3")
+    let name = document.createElement("h2")
     name.textContent = char.name
+    let gender = document.createElement("p")
+    gender.textContent = `Gender: ${char.gender}`
+    let age = document.createElement("p")
+    age.textContent = `Age: ${char.age}`
     div.appendChild(name)
+    div.appendChild(age)
+    div.appendChild(gender)
+
     charContainer.appendChild(div)
 }
 
