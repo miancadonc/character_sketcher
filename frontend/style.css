@@ -37,6 +37,8 @@ div#character-container {
     right: 0px;
 }
 
-/* div.card {
-    
-} */
+div.card {
+    background-color: darkgray;
+    box-shadow: 10px 10px darkgreen;
+    border-radius: 10px; 
+}
