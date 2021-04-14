@@ -71,4 +71,10 @@ function renderCharacter(char){
     charContainer.appendChild(div)
 }
 
+function fetchEnvironments(){
+    fetch(ENVIRONMENTS_URL)
+    .then(resp => resp.json())
+    .then(json => createEnvironmentObjects(json))
+}
+
 document.addEventListener("DOMContentLoaded", fetchCharacters)
