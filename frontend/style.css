@@ -10,10 +10,14 @@ header h1 {
 }
 
 body {
-    background-color: darkgoldenrod;
     margin: 0;
     padding: 0;
     font-family: 'Courier New', Courier, monospace;
+}
+
+div {
+    display: inline-block;
+    
 }
 
 div#environment-container {
@@ -21,4 +25,30 @@ div#environment-container {
     height: 1000px;
     background-color: cornsilk;
     width: 20%;
+}
+
+div#character-container {
+    background-color: darkgreen;
+    position: fixed;
+    height: 1000px;
+    width: 80%;
+    top: 50px;
+    right: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
+    overflow-y: scroll;
+}
+
+div.card {
+    background-color: goldenrod;
+    box-shadow: 10px 10px darkgoldenrod;
+    border-radius: 10px; 
+    height: 250px;
+    width: 300px;
+    text-indent: 5px;
+    overflow-y: scroll;
 }
