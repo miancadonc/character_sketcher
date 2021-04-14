@@ -1,5 +1,6 @@
 const BASE_URL = "http://localhost:3000"
 const CHARACTERS_URL = `${BASE_URL}/characters`
+const ENVIRONMENTS_URL = `${BASE_URL}/environments`
 
 const characterArray = []
 const charContainer = document.getElementById("character-container")
@@ -13,6 +14,15 @@ class Character {
         this.description = description
         this.goals = goals
         this.backstory = backstory
+    }
+}
+
+class Environment {
+    constructor (id, name, medium, charArray) {
+        this.id = id
+        this.name = name
+        this.medium = medium
+        this.charArray = charArray
     }
 }
 
