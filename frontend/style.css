@@ -17,8 +17,7 @@ body {
 
 div {
     display: inline-block;
-    margin: 0;
-    padding: 0;
+    
 }
 
 div#environment-container {
@@ -29,16 +28,25 @@ div#environment-container {
 }
 
 div#character-container {
-    background-color: darkgoldenrod;
+    background-color: darkgreen;
     position: fixed;
     height: 1000px;
     width: 80%;
     top: 50px;
     right: 0px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    padding-top: 10px;
+    padding-bottom: 30px;
 }
 
 div.card {
-    background-color: darkgray;
-    box-shadow: 10px 10px darkgreen;
+    background-color: goldenrod;
+    box-shadow: 10px 10px darkgoldenrod;
     border-radius: 10px; 
+    height: 250px;
+    width: 300px;
+    
 }
