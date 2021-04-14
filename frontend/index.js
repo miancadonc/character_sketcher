@@ -43,11 +43,18 @@ function renderCharacter(char){
     let description = document.createElement("p")
     description.textContent = char.description
 
+    let goals = document.createElement("p")
+    goals.textContent = `Goals: ${char.goals}`
+    let backstory = document.createElement("p")
+    backstory.textContent = `Personal History: ${char.backstory}`
 
     div.appendChild(name)
     div.appendChild(age)
     div.appendChild(gender)
     div.appendChild(description)
+
+    div.appendChild(goals)
+    div.appendChild(backstory)
 
     charContainer.appendChild(div)
 }
