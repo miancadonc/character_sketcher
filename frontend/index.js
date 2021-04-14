@@ -53,6 +53,8 @@ function renderCharacter(char){
     div.appendChild(gender)
     div.appendChild(description)
 
+    // goals and backstory may eventually be turned into buttons instead so they are held separately. At the moment though, simple overflow scrolling on the divs seems fine to me.
+
     div.appendChild(goals)
     div.appendChild(backstory)
 
