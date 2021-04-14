@@ -40,9 +40,14 @@ function renderCharacter(char){
     gender.textContent = `Gender: ${char.gender}`
     let age = document.createElement("p")
     age.textContent = `Age: ${char.age}`
+    let description = document.createElement("p")
+    description.textContent = char.description
+
+
     div.appendChild(name)
     div.appendChild(age)
     div.appendChild(gender)
+    div.appendChild(description)
 
     charContainer.appendChild(div)
 }
