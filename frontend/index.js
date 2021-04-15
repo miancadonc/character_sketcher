@@ -88,6 +88,25 @@ function createEnvironmentObjects(json){
         environmentArray.push(env)
     })
     environmentArray.forEach(e => renderEnvironment(e))
+    renderNewEnvButton()
+}
+
+function renderNewEnvButton(){
+    let div = document.createElement("div")
+    div.id = environmentArray.length + 1
+    div.classList.add("env-card")
+
+    let name = document.createElement("h1")
+    name.textContent = "Create New Environment!"
+
+    div.appendChild(name)
+
+    div.addEventListener("click", function(e){
+        e.preventDefault()
+        renderNewEnvForm(div)
+    })
+
+    envContainer.appendChild(div)
 }
 
 function renderEnvironment(env){
