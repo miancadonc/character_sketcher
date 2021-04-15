@@ -45,8 +45,9 @@ function createCharacterObjects(json){
 
 function renderCharacter(char){
     let div = document.createElement("div")
-    div.id = char.id
-    div.classList.add("card")
+    div.id = `char${char.id}`
+    div.classList.add("char-card")
+
     let name = document.createElement("h2")
     name.textContent = char.name
     let gender = document.createElement("p")
@@ -85,6 +86,23 @@ function createEnvironmentObjects(json){
         let env = new Environment(e.id, e.name, e.medium, e.characters)
         environmentArray.push(env)
     })
+    environmentArray.forEach(e => renderEnvironment(e))
+}
+
+function renderEnvironment(env){
+    let div = document.createElement("div")
+    div.id = `env${env.id}`
+    div.classList.add("env-card")
+
+    let name = document.createElement("h3")
+    name.textContent = env.name
+    let medium = document.createElement("p")
+    medium.textContent = `Medium: ${env.medium}`
+
+    div.appendChild(name)
+    div.appendChild(medium)
+
+    envContainer.appendChild(div)
 }
 
 document.addEventListener("DOMContentLoaded", fetchCharacters)
