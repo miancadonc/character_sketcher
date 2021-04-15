@@ -7,6 +7,7 @@ const charContainer = document.getElementById("character-container")
 
 const environmentArray = []
 const envContainer = document.getElementById("environment-container")
+const header = document.querySelector("h1")
 
 class Character {
     constructor (id, name, age, gender, description, goals, backstory) {
@@ -90,6 +91,7 @@ function createEnvironmentObjects(json){
 }
 
 function renderEnvironment(env){
+
     let div = document.createElement("div")
     div.id = `env${env.id}`
     div.classList.add("env-card")
@@ -105,6 +107,7 @@ function renderEnvironment(env){
     div.addEventListener("click", function(e){
         e.preventDefault()
         removeChildNodes(charContainer)
+        header.textContent = `Current Environment: ${env.name} (${env.medium})`
         env.charArray.forEach(e => renderCharacter(e))
 
     })
