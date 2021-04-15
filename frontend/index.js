@@ -103,11 +103,37 @@ function renderNewEnvButton(){
 
     div.addEventListener("click", function(e){
         e.preventDefault()
-        renderNewEnvForm(div)
+        if(div.childElementCount > 1){
+            div.remove()
+            renderNewEnvButton()
+        }else{
+            renderNewEnvForm(div)
+        }
     })
 
     envContainer.appendChild(div)
 }
+
+function renderNewEnvForm(div){
+    let nameInput = document.createElement("input")
+    nameInput.id = "nameinput"
+    nameInput.placeholder = "Name"
+
+    let mediumInput = document.createElement("input")
+    mediumInput.id = "mediuminput"
+    mediumInput.placeholder = "Medium"
+
+    let submit = document.createElement("button")
+    submit.textContent = "Submit"
+
+    submit.addEventListener("click", newEnvFetch)
+
+    div.appendChild(nameInput)
+    div.appendChild(mediumInput)
+    div.appendChild(submit)
+}
+
+function newEnvFetch(){}
 
 function renderEnvironment(env){
 
