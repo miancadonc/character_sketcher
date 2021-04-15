@@ -102,7 +102,20 @@ function renderEnvironment(env){
     div.appendChild(name)
     div.appendChild(medium)
 
+    div.addEventListener("click", function(e){
+        e.preventDefault()
+        removeChildNodes(charContainer)
+        env.charArray.forEach(e => renderCharacter(e))
+
+    })
+
     envContainer.appendChild(div)
+}
+
+function removeChildNodes(parent){
+    while(parent.firstChild){
+        parent.removeChild(parent.firstChild)
+    }
 }
 
 document.addEventListener("DOMContentLoaded", fetchCharacters)
