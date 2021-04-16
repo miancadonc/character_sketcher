@@ -42,7 +42,7 @@ function createCharacterObjects(json){
         characterArray.push(char)
     })
     characterArray.forEach(e => renderCharacter(e))
-    renderNewCharForm()
+    renderNewCharForm(1)
 }
 
 function renderCharacter(char){
@@ -160,9 +160,10 @@ function renderNewEnvButton(){
 //     div.appendChild(submit)
 // }
 
-function renderNewCharForm(){
+function renderNewCharForm(id){
     let form = document.createElement("div")
     form.classList.add("char-card")
+    form.id = `charForm-env${id}`
 
     let formName = document.createElement("h2")
     formName.textContent = "Create New Character!"
@@ -183,11 +184,36 @@ function renderNewCharForm(){
 
     let submit = document.createElement("button")
     submit.textContent = "Submit"
+
+    submit.addEventListener("click", e => {
+        e.preventDefault()
+        let charData = new Character(id, nameInput.value, ageInput.value, genderInput.value, descriptionInput.value, goalsInput.value, backstoryInput.value)
+        newCharFetch(charData)
+    })
     
     let inputs = [formName, nameInput, ageInput, genderInput, descriptionInput, goalsInput, backstoryInput, submit]
     inputs.forEach(e => form.appendChild(e))
     
     charContainer.appendChild(form)
+}
+
+function newCharFetch(charData){
+    let env = environmentArray.find(e => e.id == charData.id)
+
+    let configObject = {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+            "Accept" : "application/json"
+        },
+        body: JSON.stringify(charData)
+    }
+
+    fetch(CHARACTERS_URL, configObject)
+    .then(renderEnvChars(env))
+    .catch(function(e){
+        document.body.innerHTML = e.message
+    })
 }
 
 
@@ -225,14 +251,18 @@ function renderEnvironment(env){
 
     div.addEventListener("click", function(e){
         e.preventDefault()
-        removeChildNodes(charContainer)
-        header.textContent = `Current Environment: ${env.name} (${env.medium})`
-        env.charArray.forEach(e => renderCharacter(e))
-        renderNewCharForm()
+        renderEnvChars(env)
 
     })
 
     envContainer.appendChild(div)
+}
+
+function renderEnvChars(env){
+    removeChildNodes(charContainer)
+    header.textContent = `Current Environment: ${env.name} (${env.medium})`
+    env.charArray.forEach(e => renderCharacter(e))
+    renderNewCharForm(env.id)
 }
 
 function removeChildNodes(parent){
