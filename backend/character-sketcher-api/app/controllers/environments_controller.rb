@@ -10,5 +10,6 @@ class EnvironmentsController < ApplicationController
     end
 
     def create
+        Environment.create(name: params[:name], medium: params[:medium])
     end
 end
