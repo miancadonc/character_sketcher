@@ -42,6 +42,7 @@ function createCharacterObjects(json){
         characterArray.push(char)
     })
     characterArray.forEach(e => renderCharacter(e))
+    renderNewCharForm()
 }
 
 function renderCharacter(char){
@@ -113,11 +114,11 @@ function renderNewEnvButton(){
     // })
 
     let nameInput = document.createElement("input")
-    nameInput.id = "nameinput"
+    // nameInput.id = "nameinput"
     nameInput.placeholder = "Name"
 
     let mediumInput = document.createElement("input")
-    mediumInput.id = "mediuminput"
+    // mediumInput.id = "mediuminput"
     mediumInput.placeholder = "Medium"
 
     let submit = document.createElement("button")
@@ -159,6 +160,36 @@ function renderNewEnvButton(){
 //     div.appendChild(submit)
 // }
 
+function renderNewCharForm(){
+    let form = document.createElement("div")
+    form.classList.add("char-card")
+
+    let formName = document.createElement("h2")
+    formName.textContent = "Create New Character!"
+
+    let nameInput = document.createElement("input")
+    let ageInput = document.createElement("input")
+    let genderInput = document.createElement("input")
+    let descriptionInput = document.createElement("TEXTAREA")
+    let goalsInput = document.createElement("TEXTAREA")
+    let backstoryInput = document.createElement("TEXTAREA")
+
+    nameInput.placeholder = "Character Name"
+    ageInput.placeholder = "Age"
+    genderInput.placeholder = "Gender"
+    descriptionInput.placeholder = "Physical Description"
+    goalsInput.placeholder = "Personal Goals"
+    backstoryInput.placeholder = "Personal History or Backstory"
+
+    let submit = document.createElement("button")
+    submit.textContent = "Submit"
+    
+    let inputs = [formName, nameInput, ageInput, genderInput, descriptionInput, goalsInput, backstoryInput, submit]
+    inputs.forEach(e => form.appendChild(e))
+    
+    charContainer.appendChild(form)
+}
+
 
 function newEnvFetch(envData){
     
@@ -197,6 +228,7 @@ function renderEnvironment(env){
         removeChildNodes(charContainer)
         header.textContent = `Current Environment: ${env.name} (${env.medium})`
         env.charArray.forEach(e => renderCharacter(e))
+        renderNewCharForm()
 
     })
 
