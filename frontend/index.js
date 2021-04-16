@@ -77,8 +77,6 @@ function renderCharacter(char){
 }
 
 function fetchEnvironments(){
-    removeChildNodes(envContainer)
-
     fetch(ENVIRONMENTS_URL)
     .then(resp => resp.json())
     .then(json => createEnvironmentObjects(json))
@@ -128,6 +126,8 @@ function renderNewEnvButton(){
     
     submit.addEventListener("click", e => {
         e.preventDefault()
+        // removeChildNodes(envContainer)
+        // I truly can not figure out why this function isn't working so I'm going to move on for now.
         let envData = {
             name: nameInput.value,
             medium: mediumInput.value
