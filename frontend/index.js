@@ -77,14 +77,15 @@ function renderCharacter(char){
 }
 
 function fetchEnvironments(){
+    removeChildNodes(envContainer)
+
     fetch(ENVIRONMENTS_URL)
     .then(resp => resp.json())
     .then(json => createEnvironmentObjects(json))
 }
 
 function createEnvironmentObjects(json){
-    removeChildNodes(envContainer)
-
+    
     json.forEach(function(e){
         let env = new Environment(e.id, e.name, e.medium, e.characters)
         environmentArray.push(env)
