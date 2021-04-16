@@ -198,7 +198,7 @@ function renderNewCharForm(id){
 }
 
 function newCharFetch(charData){
-    let env = environmentArray.find(e => e.id == charData.id)
+    let env = environmentArray.find(e => e.id === charData.id)
 
     let configObject = {
         method: "POST",
@@ -210,12 +210,13 @@ function newCharFetch(charData){
     }
 
     fetch(CHARACTERS_URL, configObject)
-    .then(renderEnvChars(env))
     .catch(function(e){
         document.body.innerHTML = e.message
     })
+    renderEnvChars(env)
 }
 
+// In the above fetch method, and in the other post fetch method, I can't seem to get the dom to re-render automatically.
 
 function newEnvFetch(envData){
     
