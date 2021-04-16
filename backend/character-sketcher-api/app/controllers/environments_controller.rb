@@ -8,4 +8,7 @@ class EnvironmentsController < ApplicationController
         environment = Environment.find(params[:id])
         render json: EnvironmentSerializer.new(environment).to_serialized_json
     end
+
+    def create
+    end
 end

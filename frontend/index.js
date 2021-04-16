@@ -83,6 +83,8 @@ function fetchEnvironments(){
 }
 
 function createEnvironmentObjects(json){
+    removeChildNodes(envContainer)
+
     json.forEach(function(e){
         let env = new Environment(e.id, e.name, e.medium, e.characters)
         environmentArray.push(env)
@@ -101,20 +103,16 @@ function renderNewEnvButton(){
 
     div.appendChild(name)
 
-    div.addEventListener("click", function(e){
-        e.preventDefault()
-        if(div.childElementCount > 1){
-            div.remove()
-            renderNewEnvButton()
-        }else{
-            renderNewEnvForm(div)
-        }
-    })
+    // div.addEventListener("click", function(e){
+    //     e.preventDefault()
+    //     if(div.childElementCount > 1){
+    //         div.remove()
+    //         renderNewEnvButton()
+    //     }else{
+    //         renderNewEnvForm(div)
+    //     }
+    // })
 
-    envContainer.appendChild(div)
-}
-
-function renderNewEnvForm(div){
     let nameInput = document.createElement("input")
     nameInput.id = "nameinput"
     nameInput.placeholder = "Name"
@@ -125,15 +123,59 @@ function renderNewEnvForm(div){
 
     let submit = document.createElement("button")
     submit.textContent = "Submit"
-
-    submit.addEventListener("click", newEnvFetch)
+    //  Pretty sure the below preventDefault is the only necessary one so far
+    
+    submit.addEventListener("click", e => {
+        e.preventDefault()
+        let envData = {
+            name: nameInput.value,
+            medium: mediumInput.value
+        }
+        newEnvFetch(envData)
+    })
 
     div.appendChild(nameInput)
     div.appendChild(mediumInput)
     div.appendChild(submit)
+
+    envContainer.appendChild(div)
 }
 
-function newEnvFetch(){}
+// function renderNewEnvForm(div){
+    
+
+//     // submit.addEventListener("click", e => {
+//     //     e.preventDefault()
+//     //     let envData = {
+//     //         name: nameInput.value,
+//     //         medium: mediumInput.value
+//     //     }
+//     //     newEnvFetch(envData)
+//     // })
+
+//     div.appendChild(nameInput)
+//     div.appendChild(mediumInput)
+//     div.appendChild(submit)
+// }
+
+
+function newEnvFetch(envData){
+    
+    let configObject = {
+        method: "POST",
+        headers: {
+            "Content-Type" : "application/json",
+            "Accept" : "application/json"
+        },
+        body: JSON.stringify(envData)
+    }
+
+    fetch(ENVIRONMENTS_URL, configObject)
+    .then(fetchEnvironments)
+    .catch( function(error){
+        document.body.innerHTML = error.message
+    })
+}
 
 function renderEnvironment(env){
 
