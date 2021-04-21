@@ -68,6 +68,7 @@ function renderCharacter(char){
     deleteButton.textContent = "Delete This Character"
     deleteButton.addEventListener("click", e => {
         e.preventDefault()
+        charContainer.removeChild(div)
         deleteCharacterFetch(char.id)
     })
 
@@ -97,7 +98,7 @@ function deleteCharacterFetch(id){
     }
 
     fetch(`${CHARACTERS_URL}/${id}`, configObject)
-
+    .then(resetEnvironments)
 }
 
 function fetchEnvironments(){
@@ -186,7 +187,7 @@ function renderNewEnvButton(){
 function renderNewCharForm(id){
     let form = document.createElement("div")
     form.classList.add("char-card")
-    form.id = `charForm-env${id}`
+    form.id = `charForm`
 
     let formName = document.createElement("h2")
     formName.textContent = "Create New Character!"
@@ -232,16 +233,18 @@ function newCharFetch(charData){
     }
 
     fetch(CHARACTERS_URL, configObject)
-    .then(resp => {
-        if(resp){
-            resetEnvironments()
-            
-        }
-    })
+    .then(resetEnvironments)
+    .then(renderNewChar(charData))
     .catch(function(e){
         document.body.innerHTML = e.message
     })
     
+}
+
+function renderNewChar(charData){
+    charContainer.removeChild(document.getElementById("charForm"))
+    renderCharacter(charData)
+    renderNewCharForm(charData.id)
 }
 
 function resetEnvironments(){
