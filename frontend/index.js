@@ -64,6 +64,13 @@ function renderCharacter(char){
     let backstory = document.createElement("p")
     backstory.textContent = `Personal History: ${char.backstory}`
 
+    let deleteButton = document.createElement("button")
+    deleteButton.textContent = "Delete This Character"
+    deleteButton.addEventListener("click", e => {
+        e.preventDefault()
+        deleteCharacterFetch(char.id)
+    })
+
     div.appendChild(name)
     div.appendChild(age)
     div.appendChild(gender)
@@ -74,7 +81,23 @@ function renderCharacter(char){
     div.appendChild(goals)
     div.appendChild(backstory)
 
+    div.appendChild(deleteButton)
+
     charContainer.appendChild(div)
+}
+
+function deleteCharacterFetch(id){
+    let configObject = {
+        method: "DELETE",
+        headers: {
+            "Content-Type" : "application/json",
+            "Accept" : "application/json"
+        },
+        body: JSON.stringify({char_id: id})
+    }
+
+    fetch(`${CHARACTERS_URL}/${id}`, configObject)
+
 }
 
 function fetchEnvironments(){

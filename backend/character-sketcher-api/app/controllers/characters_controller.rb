@@ -20,4 +20,9 @@ class CharactersController < ApplicationController
 
         character.save
     end
+
+    def destroy
+        character = Character.find(params[:char_id])
+        character.destroy
+    end
 end
